@@ -8,36 +8,113 @@
         Title="Task Manager" Height="600" Width="600" Name="TaskWindow">
     <Window.Resources>
         <DataTemplate x:Key="taskListTemplate">
-            <UniformGrid Columns="7">
+            <UniformGrid Columns="7" Rows="1">
                 <Label Grid.Column="0" FontSize="20" Content="{Binding Name}"></Label>
+                <Label Grid.Column="1" FontSize="20" Content="{Binding PID}"></Label>
+                <Label Grid.Column="2" FontSize="20" Content="{Binding Status}"></Label>
+                <Label Grid.Column="3" FontSize="20" Content="{Binding User name}"></Label>
+                <Label Grid.Column="4" FontSize="20" Content="{Binding CPU}"></Label>
+                <Label Grid.Column="5" FontSize="20" Content="{Binding Memory}"></Label>
+                <Label Grid.Column="6" FontSize="20" Content="{Binding Description}"></Label>
             </UniformGrid>
         </DataTemplate>
     </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="40"></RowDefinition>
             <RowDefinition></RowDefinition>
-            <RowDefinition Height="40"></RowDefinition>
+            <RowDefinition Height="70"></RowDefinition>
         </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition></ColumnDefinition>
-            <ColumnDefinition></ColumnDefinition>
-            <ColumnDefinition></ColumnDefinition>
-            <ColumnDefinition></ColumnDefinition>
-            <ColumnDefinition></ColumnDefinition>
-            <ColumnDefinition></ColumnDefinition>
-            <ColumnDefinition></ColumnDefinition>
-        </Grid.ColumnDefinitions>
-        <Label Grid.Column="0" FontSize="25">Name</Label>
-        <Label Grid.Column="1" FontSize="25">PID</Label>
-        <Label Grid.Column="2" FontSize="25">Status</Label>
-        <Label Grid.Column="3" FontSize="25">User name</Label>
-        <Label Grid.Column="4" FontSize="25">CPU</Label>
-        <Label Grid.Column="5" FontSize="25">Memory</Label>
-        <Label Grid.Column="6" FontSize="25">Description</Label>
-        <ListBox Grid.Row="1" Grid.ColumnSpan="7"
-                 ItemsSource="{Binding TaskList}"
-                 ItemTemplate="{StaticResource taskListTemplate}"></ListBox>
-        <Button Grid.Row="2" Grid.Column="6" FontSize="25">End Task</Button>
+        <ListView Grid.Row="0"
+                 ItemsSource="{Binding TaskList, Mode=OneWay}"
+                 SelectedItem="{Binding SelectedItem}">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Name" Width="150">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Name}" 
+                                               TextAlignment="Center" 
+                                               FontSize="20" 
+                                               Width="Auto"/>
+                            </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="PID" Width="150">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding PID}" 
+                                               TextAlignment="Center" 
+                                               FontSize="20" 
+                                               Width="Auto"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="Status" Width="150">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Status}" 
+                                               TextAlignment="Center" 
+                                               FontSize="20" 
+                                               Width="Auto"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="User name" Width="150">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding UserName}" 
+                                               TextAlignment="Left" 
+                                               FontSize="20" 
+                                               Width="Auto"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="CPU" Width="150">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding CPU}" 
+                                               TextAlignment="Center" 
+                                               FontSize="20" 
+                                               Width="Auto"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="Memory" Width="150">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Memory}" 
+                                               TextAlignment="Center" 
+                                               FontSize="20" 
+                                               Width="Auto"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="Description" Width="150">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Description}" 
+                                               TextAlignment="Center" 
+                                               FontSize="20" 
+                                               Width="Auto"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <DockPanel Grid.Row="2">
+            <Button DockPanel.Dock="Right" FontSize="25"
+                Command="{Binding EndTaskCommand}"
+                >End Task
+            </Button>
+            <DockPanel DockPanel.Dock="Left" HorizontalAlignment="Stretch">
+                <TextBox DockPanel.Dock="Top" FontSize="25"
+                         HorizontalContentAlignment="Stretch"
+                         Text="{Binding NewTaskRequest}"></TextBox>
+                <Button DockPanel.Dock="Bottom" FontSize="20"
+                        Command="{Binding StartTaskCommand}">Start Task</Button>
+            </DockPanel>
+
+        </DockPanel>
     </Grid>
 </Window>
