@@ -5,8 +5,30 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TaskManager"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Task Manager" Height="600" Width="600">
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition Height="40"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Label Grid.Column="0" FontSize="25">Name</Label>
+        <Label Grid.Column="1" FontSize="25">PID</Label>
+        <Label Grid.Column="2" FontSize="25">Status</Label>
+        <Label Grid.Column="3" FontSize="25">User name</Label>
+        <Label Grid.Column="4" FontSize="25">CPU</Label>
+        <Label Grid.Column="5" FontSize="25">Memory</Label>
+        <Label Grid.Column="6" FontSize="25">Description</Label>
+        <ListBox Grid.Row="1" Grid.ColumnSpan="7"></ListBox>
+        <Button Grid.Row="2" Grid.Column="6" FontSize="25">End Task</Button>
     </Grid>
 </Window>
