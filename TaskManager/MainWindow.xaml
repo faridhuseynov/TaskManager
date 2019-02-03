@@ -5,7 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TaskManager"
         mc:Ignorable="d"
-        Title="Task Manager" Height="600" Width="600">
+        Title="Task Manager" Height="600" Width="600" Name="TaskWindow">
+    <Window.Resources>
+        <DataTemplate x:Key="taskListTemplate">
+            <UniformGrid Columns="7">
+                <Label Grid.Column="0" FontSize="20" Content="{Binding Name}"></Label>
+            </UniformGrid>
+        </DataTemplate>
+    </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="40"></RowDefinition>
@@ -28,7 +35,9 @@
         <Label Grid.Column="4" FontSize="25">CPU</Label>
         <Label Grid.Column="5" FontSize="25">Memory</Label>
         <Label Grid.Column="6" FontSize="25">Description</Label>
-        <ListBox Grid.Row="1" Grid.ColumnSpan="7"></ListBox>
+        <ListBox Grid.Row="1" Grid.ColumnSpan="7"
+                 ItemsSource="{Binding TaskList}"
+                 ItemTemplate="{StaticResource taskListTemplate}"></ListBox>
         <Button Grid.Row="2" Grid.Column="6" FontSize="25">End Task</Button>
     </Grid>
 </Window>
